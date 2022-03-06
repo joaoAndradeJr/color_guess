@@ -6,12 +6,19 @@ function showAnswer(text) {
   document.querySelector('#answer').innerText = text;
 }
 
+function updateScore() {
+  const score = parseInt(document.querySelector('#score').innerText, 10);
+  const newScore = score + 3;
+  document.querySelector('#score').innerText = newScore;
+}
+
 function checkAnswer(target) {
   const color = document.querySelector('#rgb-color').innerText;
   const guess = target.style.backgroundColor;
 
   if (color === guess) {
     showAnswer('Acertou!');
+    updateScore();
   } else {
     showAnswer('Errou! Tente novamente!');
   }
