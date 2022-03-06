@@ -1,3 +1,5 @@
+const colors = [];
+
 const ballsParent = document.querySelector('#balls');
 
 function showAnswer(text) {
@@ -35,9 +37,11 @@ function generateColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-const colors = [];
-for (let index = 0; index < 6; index += 1) {
-  colors.push(generateColor());
+function insertColors() {
+  colors.length = 0;
+  for (let index = 0; index < 6; index += 1) {
+    colors.push(generateColor());
+  }
 }
 
 function colorToGuess() {
@@ -52,7 +56,16 @@ function setBackground() {
   }
 }
 
-window.onload = () => {
+function startNewGame() {
+  showAnswer('Escolha uma cor');
+  insertColors();
   colorToGuess();
   setBackground();
-};
+}
+
+const startBtn = document.querySelector('#reset-game');
+startBtn.addEventListener('click', () => {
+  startNewGame();
+});
+
+window.onload = () => startNewGame();
